@@ -116,7 +116,7 @@ const LoginForm = () => {
         name='email'
         type='email'
         />
-
+        <br></br>
         <label>Password:     </label>
         <input 
         value={formValues.password}
