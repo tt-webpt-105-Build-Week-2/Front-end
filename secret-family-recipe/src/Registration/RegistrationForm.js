@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import * as yup from 'yup';
-import formSchema from './formSchema';
+import formSchema from './registrationSchema';
 import { Route, Switch } from 'react-router-dom';
 import axios from 'axios';
 
-function Form(props) {
+function RegistrationForm(props) {
     const initialForm = { name: "", email: "", password: "", checkbox: false };
     const [formValues, setFormValues] = useState(initialForm);
     const [buttonDisabled, setButtonDisabled] = useState(true);
@@ -70,4 +70,4 @@ function Form(props) {
     );
 }
 
-export default Form;
+export default RegistrationForm;
