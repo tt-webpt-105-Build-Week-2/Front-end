@@ -4,6 +4,7 @@ import schema from './loginSchema'
 import  * as yup from 'yup'
 import { Route, Switch } from 'react-router-dom'
 import axios from 'axios'
+import { useHistory } from "react-router-dom";
 
 const initialFormValues = {
   email: '',
@@ -30,6 +31,8 @@ const LoginForm = () => {
     axios.post('https://reqres.in/api/users', newUser)
       .then(response => {
         setUsers([...users, response.data])
+        localStorage.setItem("token", response.data.payload);
+        useHistory.push("/");
       })
       .catch(error => {
         // debugger 
