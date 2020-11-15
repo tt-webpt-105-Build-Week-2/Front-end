@@ -1,15 +1,19 @@
-import Navigation from './components/Navigation'
+import { Switch, Route } from 'react-router-dom'
 
+
+import Navigation from './components/Navigation'
 import LoginForm from './Login/LoginForm';
 import RegistrationForm from './Registration/RegistrationForm';
 
 function App() {
   return (
-    <div className="App">
+    <div className='App'>
       <Navigation />
 
-      <LoginForm />
-      <RegistrationForm />
+      <Switch>
+        <Route path='/sign-up' component={RegistrationForm} />
+        <Route path='/login' component={LoginForm} />
+      </Switch>
     </div>
   );
 }
