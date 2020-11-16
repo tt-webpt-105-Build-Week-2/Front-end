@@ -10,3 +10,5 @@ export const axiosWithAuth = () => {
     baseURL: 'https://secret-recipes-2.herokuapp.com/api',
   })
 }
+
+export default axiosWithAuth

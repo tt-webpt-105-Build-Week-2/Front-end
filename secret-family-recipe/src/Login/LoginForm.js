@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './LoginForm.less';
 import schema from './loginSchema'
-import  * as yup from 'yup'
+import * as yup from 'yup'
 import { Route, Switch } from 'react-router-dom'
 import axios from 'axios'
 import { useHistory } from "react-router-dom";
@@ -17,9 +17,6 @@ const initialFormErrors = {
 const initialUsers = []
 const initialDisabled = true
 
-
-
-
 const LoginForm = () => {
 
   const [users, setUsers] = useState(initialUsers)
@@ -32,7 +29,7 @@ const LoginForm = () => {
       .then(response => {
         setUsers([...users, response.data])
         localStorage.setItem("token", response.data.payload);
-        useHistory.push("/");
+        window.location.assign('/recipes');
       })
       .catch(error => {
         // debugger 
@@ -42,35 +39,35 @@ const LoginForm = () => {
         setFormValues(initialFormValues)
       })
   }
-    const validate = (name, value) => {
-        //yup validation schema
-        yup
-          .reach(schema, name)
-          .validate(value)
-          .then(valid => {
-            setFormErrors({
-              ...formErrors,
-              [name]: ""
-            })
-          })
-          .catch(error => {
-           setFormErrors({
-             ...formErrors,
-              [name]: error.errors[0]
-          })
-         })
-    }
-
-    const onChange =  event => {
-      const { name, value } = event.target
-      change(name, value)
+  const validate = (name, value) => {
+    //yup validation schema
+    yup
+      .reach(schema, name)
+      .validate(value)
+      .then(valid => {
+        setFormErrors({
+          ...formErrors,
+          [name]: ""
+        })
+      })
+      .catch(error => {
+        setFormErrors({
+          ...formErrors,
+          [name]: error.errors[0]
+        })
+      })
   }
 
-    const change = (name, value) => {
-      validate(name, value)
-      setFormValues({
-        ...formValues,
-        [name]: value
+  const onChange = event => {
+    const { name, value } = event.target
+    change(name, value)
+  }
+
+  const change = (name, value) => {
+    validate(name, value)
+    setFormValues({
+      ...formValues,
+      [name]: value
     })
   }
 
@@ -80,24 +77,24 @@ const LoginForm = () => {
       // change route to home page, dashboard
   }
 
-    const submit = () => {
-      const newUser = {
-        email: formValues.email.trim(),
-        password: formValues.password.trim()
+  const submit = () => {
+    const newUser = {
+      email: formValues.email.trim(),
+      password: formValues.password.trim()
     }
-      postNewUsers(newUser)
+    postNewUsers(newUser)
   }
 
-    useEffect(() => {
-      console.log(formValues)
-   }, [formValues])
+  useEffect(() => {
+    console.log(formValues)
+  }, [formValues])
 
-    useEffect(() => {
-      schema.isValid(formValues)
-        .then(valid => {
-         setDisabled(!valid)
-       })
-    }, [formValues])
+  useEffect(() => {
+    schema.isValid(formValues)
+      .then(valid => {
+        setDisabled(!valid)
+      })
+  }, [formValues])
 
 
 
@@ -107,28 +104,28 @@ const LoginForm = () => {
     <form onSubmit={onSubmit}>
       <h1>Login Form</h1>
 
-        <div> 
-          <div>{formErrors.name}</div>
-          <div>{formErrors.email}</div>
-          <div>{formErrors.password}</div>
-          <div>{formErrors.terms}</div>
-        </div>
+      <div>
+        <div>{formErrors.name}</div>
+        <div>{formErrors.email}</div>
+        <div>{formErrors.password}</div>
+        <div>{formErrors.terms}</div>
+      </div>
 
-        <label>Email:     </label>
-        <input 
+      <label>Email:     </label>
+      <input
         value={formValues.email}
         onChange={onChange}
         name='email'
         type='email'
-        />
+      />
 
-        <label>Password:     </label>
-        <input 
+      <label>Password:     </label>
+      <input
         value={formValues.password}
         onChange={onChange}
         name='password'
         type='password'
-        />
+      />
 
       <button disabled={disabled} id='submitBtn'>Submit</button>
     </form>
