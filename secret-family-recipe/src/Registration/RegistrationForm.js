@@ -14,7 +14,7 @@ function RegistrationForm(props) {
         const value = event.target.type === "checkbox" ? event.target.checked : event.target.value;
         setFormValues({ ...formValues, [event.target.name]: value });
     };
-    
+
     function inputChange(event) {
         /* Destructuring the  name and value from the form inputs. */
         const { name, value } = event.target;
@@ -24,46 +24,46 @@ function RegistrationForm(props) {
         'catch' is what happens when the inputs are not valid per the formSchema (e.g. logs the message in the .required()). */
         if (name === "checkbox") {
             yup.reach(formSchema, name).validate(event.target.checked).then(() => {
-        }).catch(error => {
-        });
+            }).catch(error => {
+            });
 
-        setFormValues({
-            ...formValues,
-            [name]: event.target.checked
-        })
+            setFormValues({
+                ...formValues,
+                [name]: event.target.checked
+            })
         } else {
             yup.reach(formSchema, name).validate(value).then(() => {
-        }).catch(error => {
-        });
+            }).catch(error => {
+            });
 
-        setFormValues({
-            ...formValues,
-            [name]: value
-        })
+            setFormValues({
+                ...formValues,
+                [name]: value
+            })
         }
     }
 
     useEffect(() => {
-    formSchema.isValid(formValues).then(valid => {
-        setButtonDisabled(!valid);
-    })
-  }, [formValues])
+        formSchema.isValid(formValues).then(valid => {
+            setButtonDisabled(!valid);
+        })
+    }, [formValues])
 
-      return (
+    return (
         <div>
             <head>
                 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300&display=swap" rel="stylesheet" />
             </head>
             <form onSubmit={submitForm}>
                 <label>Name:</label>
-                <input type='text' name='name' id='name' value={formValues.name} placeholder='John Doe' 
-                onChange={inputChange} />
+                <input type='text' name='name' id='name' value={formValues.name} placeholder='John Doe'
+                    onChange={inputChange} />
                 <label>Email:</label>
                 <input type='email' name='email' id='email' value={formValues.email} placeholder='johndoe@email.com' onChange={inputChange} />
                 <label>Password:</label>
-                <input type='password' name='password' id='password' value={formValues.password} placeholder='Runner124##'  onChange={inputChange}  />
+                <input type='password' name='password' id='password' value={formValues.password} placeholder='Runner124##' onChange={inputChange} />
                 <a href="#">Terms of Service</a>
-                <input type='checkbox' name="checkbox" value={formValues.checkbox} onChange={inputChange}  />
+                <input type='checkbox' name="checkbox" value={formValues.checkbox} onChange={inputChange} />
                 <button type='submit' disabled={buttonDisabled}  >Submit</button>
             </form>
         </div>
