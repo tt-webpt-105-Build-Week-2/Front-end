@@ -1,11 +1,14 @@
 import React from 'react'
 import { Spinner } from 'react-bootstrap'
+import DwainesCard from './DwainesCard'
 
 
-const RecipesList = () => {
+const RecipesList = ({recipe}) => {
     return (
         <div >
-            <Spinner animation="border" variant="warning" />
+            <h1>Recipes List:</h1>
+            {/* <Spinner animation="border" variant="warning" /> */}
+            <DwainesCard />
         </div>
     )
 }
