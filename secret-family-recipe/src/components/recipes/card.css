@@ -1,11 +1,14 @@
+.card-container {
+  width: 300px;
+  overflow: hidden;
+}
+
 .card-img {
-  overflow-y: hidden;
-  overflow-x: scroll;
-  width: 100%;
-  max-height: 300px;
   transition: transform 300ms;
 }
 
 .card-img:hover {
+  max-width: 100%;
+  max-height: 100%;
   transform: scale(1.09);
 }
