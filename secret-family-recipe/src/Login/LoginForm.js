@@ -77,6 +77,7 @@ const LoginForm = () => {
     const onSubmit = event => {
       event.preventDefault()
       submit()
+      // change route to home page, dashboard
   }
 
     const submit = () => {
@@ -102,6 +103,7 @@ const LoginForm = () => {
 
 
   return (
+    <div>
     <form onSubmit={onSubmit}>
       <h1>Login Form</h1>
 
@@ -130,6 +132,8 @@ const LoginForm = () => {
 
       <button disabled={disabled} id='submitBtn'>Submit</button>
     </form>
+    {/* new users click here, or something else, need to sign up? */}
+    </div>
   )
 }
 
