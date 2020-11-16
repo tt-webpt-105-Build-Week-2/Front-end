@@ -54,6 +54,7 @@ function RegistrationForm(props) {
             <head>
                 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300&display=swap" rel="stylesheet" />
             </head>
+            <h1>Register</h1>
             <form onSubmit={submitForm}>
                 <label>Name:</label>
                 <input type='text' name='name' id='name' value={formValues.name} placeholder='John Doe'

@@ -5,7 +5,7 @@ const Navigation = () => {
 
     return (
         <Navbar expand="lg" style={{ backgroundColor: '#F64C3C' }}>
-            <Navbar.Brand style={{ color: 'white' }} href="/">SECRET FAMILY RECIPE</Navbar.Brand>
+            <Navbar.Brand style={{ color: 'white' }} href="/recipes">SECRET FAMILY RECIPE</Navbar.Brand>
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
                     <Nav.Link href="/login">Login</Nav.Link>
