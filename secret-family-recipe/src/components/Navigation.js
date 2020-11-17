@@ -20,13 +20,13 @@ const Navigation = () => {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto" >
                         <Nav.Link onClick={logout} href="/login">Sign Out</Nav.Link>
+                        <Nav.Link href="/addrecipe">Add Recipe</Nav.Link>
                     </Nav>
                     <Form inline>
                         <FormControl type="text" placeholder="Search" className="mr-sm-2" />
                         <Button variant="outline-light">Search</Button>
                     </Form>
                 </Navbar.Collapse>
-
             ) : (
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto" >
