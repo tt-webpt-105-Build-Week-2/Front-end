@@ -1,4 +1,3 @@
-import './App.css';
 import { Switch, Route } from 'react-router-dom'
 import Navigation from './components/Navigation'
 import PrivateRoute from './utils/PrivateRoute'
@@ -10,7 +9,6 @@ function App() {
   return (
     <div className='App'>
       <Navigation />
-
       <Switch>
         <PrivateRoute exact path='/recipes' component={RecipesList} />
         <Route path='/register' component={RegistrationForm} />
