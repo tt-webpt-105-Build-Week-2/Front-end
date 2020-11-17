@@ -28,8 +28,8 @@ const initialFormErrors = {
 const initialUsers = []
 const initialDisabled = true
 
-const RecipeCard = () => {
-  return (null)
+const AddRecipe = () => {
+  
 }
 
-export default RecipeCard;
+export default AddRecipe;
