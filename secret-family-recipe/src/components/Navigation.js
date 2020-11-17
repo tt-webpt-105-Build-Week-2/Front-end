@@ -34,7 +34,6 @@ const Navigation = () => {
                             <Nav.Link href="/register">Register</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
-
                 )}
         </Navbar>
     )
