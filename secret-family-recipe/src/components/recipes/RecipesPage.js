@@ -1,10 +1,29 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
+import axiosWithAuth from '../../utils/axiosWithAuth'
+
 import './RecipesPage.css'
+import { Button } from 'react-bootstrap'
 
 const RecipesPage = () => {
+    const history = useHistory()
+
+    const deleteRecipe = id => {
+        axiosWithAuth()
+            .delete(`https://secret-recipes-2.herokuapp.com/api/recipes/${id}`)
+            .then(res => {
+                console.log('Delete:', res.data.message)
+                history.push('/recipes')
+            })
+            .catch(err => console.log(err))
+    }
+
     return (
         <div className='page-container'>
             <h2 className='title'>Creamy Mac 'n' Cheese</h2>
+            <div className='button-container'>
+                <Button variant='primary'>Edit Recipe</Button>
+            </div>
             <div className='recipe-wrapper'>
                 <div className='ingredients'>
                     <h2>Ingridients:</h2>
@@ -21,6 +40,9 @@ const RecipesPage = () => {
                     <p>1. Heat medium saucepot of salted water to boiling on high.</p>
                     <p>2. In large saucepot, melt butter on medium heat. Sprinkle flour over melted butter. Cook 1 minute or until well combined, stirring constantly with wooden spoon. Reduce heat to medium-low. While whisking, slowly drizzle milk into pot. Add garlic and 1/2 teaspoon salt. Heat sauce to simmering on medium, whisking and scraping pot. Simmer 1 minute or until thickened, whisking constantly.</p>
                 </div>
+            </div>
+            <div className='button-container'>
+                <Button variant='danger'>Delete Recipe</Button>
             </div>
         </div>
     )
