@@ -1,4 +1,3 @@
-import './App.css';
 import { Switch, Route } from 'react-router-dom'
 import Navigation from './components/Navigation'
 import PrivateRoute from './utils/PrivateRoute'
