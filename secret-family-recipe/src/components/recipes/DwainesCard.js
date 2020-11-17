@@ -12,7 +12,7 @@ const DwainesCard = ({ title, source, id }) => {
                     <Card.Text>
                         Bacon ipsum dolor amet short ribs brisket venison rump drumstick pig sausage chicken.
                     </Card.Text>
-                    <Button variant="danger">View Recipe</Button>
+                    <Button href="/recipe0" variant="danger">View Recipe</Button>
                 </Card.Body>
             </Card>
         </div>
