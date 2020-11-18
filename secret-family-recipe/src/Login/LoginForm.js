@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-// import './LoginForm.less';
+import './LoginForm.css';
 import schema from './loginSchema'
 import * as yup from 'yup'
 import { Route, Switch } from 'react-router-dom'
@@ -102,7 +102,7 @@ const LoginForm = () => {
   return (
     <div>
     <form onSubmit={onSubmit}>
-      <h1>Login Form</h1>
+      <h1>Login</h1>
 
       <div>
         <div>{formErrors.name}</div>
@@ -133,5 +133,6 @@ const LoginForm = () => {
     </div>
   )
 }
+
 
 export default LoginForm
