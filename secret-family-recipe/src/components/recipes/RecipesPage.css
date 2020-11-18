@@ -1,0 +1,16 @@
+.page-container {
+  margin: 3rem;
+}
+
+.recipe-wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  text-align: justify;
+}
+
+.ingredients {
+  width: 50%;
+}
+.directions {
+  width: 50%;
+}

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './LoginForm.less';
-import schema from './loginSchema'
+import schema from './addRecipeSchema'
 import  * as yup from 'yup'
 import axios from 'axios'
 
@@ -114,8 +113,64 @@ const AddRecipe = () => {
       <form onSubmit={onSubmit} className='addRecipe'>
         <h1>Add Recipe Here!</h1>
 
-        <
+        {/* title */}
+        <label>Title:     
+        <input 
+        value={formValues.title}
+        onChange={onChange}
+        name='title'
+        type='text'
+        />
+        </label>
 
+        {/* source */}
+        <label>Source:     
+        <input 
+        value={formValues.source}
+        onChange={onChange}
+        name='source'
+        type='text'
+        />
+        </label>
+
+        {/* ingredients */}
+        <label>Ingredients:     
+        <textarea 
+        value={formValues.ingredients}
+        onChange={onChange}
+        name='ingredients'
+        type='text'
+        />
+        </label>
+
+        {/* instructions */}
+        <label>Instructions:     
+        <textarea 
+        value={formValues.instructions}
+        onChange={onChange}
+        name='instructions'
+        type='text'
+        />
+        </label>
+
+        {/* category */}
+        <label>Category:       
+        <select 
+        onChange={onChange}
+        value={formValues.category}
+        name='category'
+        >
+           {/* <option>- Select an option -</option> */}
+            <option value='appetizer'>appetizer</option>
+            <option value='entree'>entree</option>
+            <option value='sides'>sides</option>
+            <option value='dessert'>dessert</option>
+            <option value='snack'>snack</option>
+            <option value='beverage'>beverage</option>
+        </select>
+</label>
+
+        <button disabled={disabled} id='submitBtn'>Submit</button>
       </form>
 
 
