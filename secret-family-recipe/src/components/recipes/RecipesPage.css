@@ -1,0 +1,25 @@
+.page-container {
+  margin: 3rem;
+}
+
+.recipe-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  text-align: justify;
+  max-width: 1100px;
+}
+
+.ingredients {
+  width: 40%;
+}
+.directions {
+  width: 50%;
+}
+
+.button-container{
+    display:flex;
+    justify-content: flex-end;
+  max-width: 1100px;
+
+}
