@@ -1,0 +1,48 @@
+form {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+  height: 32%;
+  margin: 0 34vw;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  background-color: #0999e9;
+  padding: 35px;
+  text-align: center;
+  box-shadow: 5px 5px 500px grey;
+  border-radius: 25px;
+}
+
+form h1 {
+  margin-bottom: 15px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+form a {
+  color: black;
+  text-decoration: underline;
+}
+
+input {
+  display: inline-block;
+  float: right;
+}
+
+#check {
+  margin: 10px 35px 0 0;
+}
+
+form button {
+  margin: 15px 0;
+  color: black;
+  border-radius: 25px;
+}
+
+form button:hover {
+  background-color: #f54c3c;
+  border: #f54c3c;
+}
