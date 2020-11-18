@@ -1,21 +1,23 @@
 import React from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import axiosWithAuth from '../../utils/axiosWithAuth'
+
 
 import './RecipesPage.css'
 import { Button } from 'react-bootstrap'
 
 const RecipesPage = () => {
     const history = useHistory()
+    const { id } = useParams()
 
     const deleteRecipe = id => {
         axiosWithAuth()
-            .delete(`https://secret-recipes-2.herokuapp.com/api/recipes/${id}`)
+            .delete(`http://localhost:3000//api/recipes/${id}`)
             .then(res => {
-                console.log('Delete:', res.data.message)
+                console.log('deleted recipe:', res.data.title)
                 history.push('/recipes')
             })
-            .catch(err => console.log(err))
+            .catch(err => console.log('delete failed', err))
     }
 
     return (
@@ -42,7 +44,7 @@ const RecipesPage = () => {
                 </div>
             </div>
             <div className='button-container'>
-                <Button variant='danger'>Delete Recipe</Button>
+                <Button variant='danger' onClick={() => deleteRecipe()}> Delete Recipe</Button>
             </div>
         </div>
     )

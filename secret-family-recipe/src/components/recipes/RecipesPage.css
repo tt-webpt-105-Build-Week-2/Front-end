@@ -17,9 +17,28 @@
   width: 50%;
 }
 
-.button-container{
-    display:flex;
-    justify-content: flex-end;
+.button-container {
+  display: flex;
+  justify-content: flex-end;
   max-width: 1100px;
+}
 
+@media only screen and (max-width: 760px) {
+  .page-container {
+    margin: 1rem;
+  }
+
+  .recipe-wrapper {
+    flex-direction: column;
+    justify-content: center;
+    margin: 0;
+  }
+
+  .ingredients {
+    width: 90%;
+  }
+  .directions {
+    width: 90%;
+    margin-top: 1.2rem;
+  }
 }

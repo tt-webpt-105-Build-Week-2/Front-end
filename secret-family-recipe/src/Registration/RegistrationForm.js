@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import * as yup from "yup";
 import formSchema from "./registrationSchema";
 import { Route, Switch } from "react-router-dom";
-import axios from "axios";
+import axiosWithAuth from '../utils/axiosWithAuth';
 import "./RegistrationForm.css";
 
 function RegistrationForm(props) {
@@ -13,11 +13,33 @@ function RegistrationForm(props) {
   const submitForm = (event) => {
     event.preventDefault();
     const value =
-      event.target.type === "checkbox"
-        ? event.target.checked
-        : event.target.value;
+    event.target.type === "checkbox"
+    ? event.target.checked
+    : event.target.value;
     setFormValues({ ...formValues, [event.target.name]: value });
+    console.log(formValues)
+    axiosWithAuth()
+    .post('/auth/register', formValues)
+            .then(res => {
+              console.log(res)
+              props.postLogin(formValues)
+            })
+            .catch(err => {
+              console.log(err)
+            })
+
   };
+
+  
+          // axiosWithAuth()
+          //   .post('/auth/register', values)
+          //   .then(res => {
+          //     console.log(res)
+          //     props.postLogin(values)
+          //   })
+          //   .catch(err => {
+          //     console.log(err)
+          //   })
 
   function inputChange(event) {
     /* Destructuring the  name and value from the form inputs. */
