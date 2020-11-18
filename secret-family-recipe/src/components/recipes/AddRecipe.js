@@ -8,14 +8,7 @@ const initialFormValues = {
   source: '',
   ingredients: '',
   instructions: '',
-  category: {
-    appetizer: false, 
-    entree: false,
-    sides: false, 
-    dessert: false, 
-    snack: false, 
-    beverage: false
-  }
+  category: ''
 }
 const initialFormErrors = {
   title: '',
@@ -32,6 +25,7 @@ const AddRecipe = () => {
   const [formValues, setFormValues] = useState(initialFormValues)
   const [formErrors, setFormErrors] = useState(initialFormErrors)
   const [disabled, setDisabled] = useState(initialDisabled)
+  const [category, setCategory] = useState('')
 
   const postNewRecipe = newRecipe => {
     axios.post('https://reqres.in/api/users:', newRecipe)
@@ -82,6 +76,7 @@ const AddRecipe = () => {
     const onSubmit = event => {
       event.preventDefault()
       submit()
+      setCategory('')
   }
 
   const submit = () => {
@@ -93,6 +88,15 @@ const AddRecipe = () => {
       category: formValues.category
     }
     postNewRecipe(newRecipe)
+  }
+
+  const onDropdownChange = (e) => {
+    const { name, value} = e.target
+    setCategory(value)
+    setFormValues({
+      ...formValues,
+      [name]: value
+    })
   }
 
   useEffect (() => {
@@ -156,11 +160,12 @@ const AddRecipe = () => {
         {/* category */}
         <label>Category:       
         <select 
-        onChange={onChange}
-        value={formValues.category}
+        onChange={onDropdownChange}
+        value={category}
         name='category'
+        required
         >
-           {/* <option>- Select an option -</option> */}
+          <option value=''>- Select an option -</option>
             <option value='appetizer'>appetizer</option>
             <option value='entree'>entree</option>
             <option value='sides'>sides</option>
