@@ -3,43 +3,53 @@ import * as yup from "yup";
 import formSchema from "./registrationSchema";
 import { Route, Switch } from "react-router-dom";
 import axiosWithAuth from '../utils/axiosWithAuth';
-import "./RegistrationForm.css";
+// import "./RegistrationForm.css";
+import { useHistory } from 'react-router-dom';
 
 function RegistrationForm(props) {
-  const initialForm = { name: "", email: "", password: "", checkbox: false };
+  const initialForm = {
+    first_name: '',
+    last_name: '',
+    username: '',
+    email: '',
+    password: '',
+  };
   const [formValues, setFormValues] = useState(initialForm);
   const [buttonDisabled, setButtonDisabled] = useState(true);
+
+  let history = useHistory();
 
   const submitForm = (event) => {
     event.preventDefault();
     const value =
-    event.target.type === "checkbox"
-    ? event.target.checked
-    : event.target.value;
+      event.target.type === "checkbox"
+        ? event.target.checked
+        : event.target.value;
     setFormValues({ ...formValues, [event.target.name]: value });
     console.log(formValues)
     axiosWithAuth()
-    .post('/auth/register', formValues)
-            .then(res => {
-              console.log(res)
-              props.postLogin(formValues)
-            })
-            .catch(err => {
-              console.log(err)
-            })
+      .post('/auth/register', formValues)
+      .then(res => {
+        console.log(res)
+        // props.postLogin(formValues)
+        history.push('/signin')
+      })
+      .catch(err => {
+        console.log(err)
+      })
 
   };
 
-  
-          // axiosWithAuth()
-          //   .post('/auth/register', values)
-          //   .then(res => {
-          //     console.log(res)
-          //     props.postLogin(values)
-          //   })
-          //   .catch(err => {
-          //     console.log(err)
-          //   })
+
+  // axiosWithAuth()
+  //   .post('/auth/register', values)
+  //   .then(res => {
+  //     console.log(res)
+  //     props.postLogin(values)
+  //   })
+  //   .catch(err => {
+  //     console.log(err)
+  //   })
 
   function inputChange(event) {
     /* Destructuring the  name and value from the form inputs. */
@@ -52,8 +62,8 @@ function RegistrationForm(props) {
       yup
         .reach(formSchema, name)
         .validate(event.target.checked)
-        .then(() => {})
-        .catch((error) => {});
+        .then(() => { })
+        .catch((error) => { });
 
       setFormValues({
         ...formValues,
@@ -63,8 +73,8 @@ function RegistrationForm(props) {
       yup
         .reach(formSchema, name)
         .validate(value)
-        .then(() => {})
-        .catch((error) => {});
+        .then(() => { })
+        .catch((error) => { });
 
       setFormValues({
         ...formValues,
@@ -90,13 +100,30 @@ function RegistrationForm(props) {
       <form onSubmit={submitForm}>
         <h1>Register</h1>
         <div class="name">
-          <label>Name:</label>
+          <label>F Name:</label>
           <input
             type="text"
-            name="name"
+            name="first_name"
             id="name"
-            value={formValues.name}
-            placeholder="John Doe"
+            value={formValues.first_name}
+            placeholder="John"
+            onChange={inputChange}
+          />
+          <label>L Name:</label>
+          <input
+            type="text"
+            name="last_name"
+            id="name"
+            value={formValues.last_name}
+            placeholder="Doe"
+            onChange={inputChange}
+          /><label>Username:</label>
+          <input
+            type="text"
+            name="username"
+            id="username"
+            value={formValues.username}
+            placeholder="bigjoe"
             onChange={inputChange}
           />
         </div>

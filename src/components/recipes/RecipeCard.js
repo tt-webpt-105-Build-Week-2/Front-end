@@ -8,9 +8,10 @@ const RecipeCard = ({ title, source, id }) => {
             <Card className="card-container">
                 <Card.Img variant="top" className="card-img" src="https://img.buzzfeed.com/thumbnailer-prod-us-east-1/3c0710e0531b41b7804acf4a52ee15be/FB_04forpkg.jpg?output-format=auto&output-quality=auto" />
                 <Card.Body>
-                    <Card.Title >Creamy Mac 'n' Cheese</Card.Title>
+                    <Card.Title >{title}</Card.Title>
                     <Card.Text>
-                        Bacon ipsum dolor amet short ribs brisket venison rump drumstick pig sausage chicken.
+                        {source}
+                        {id}
                     </Card.Text>
                     <Button href="/recipe0" variant="danger">View Recipe</Button>
                 </Card.Body>
@@ -19,3 +20,4 @@ const RecipeCard = ({ title, source, id }) => {
     )
 }
 export default RecipeCard
+

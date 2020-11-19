@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './LoginForm.css';
+// import './LoginForm.css';
 import schema from './loginSchema'
 import * as yup from 'yup'
 import { Route, Switch } from 'react-router-dom'
@@ -7,11 +7,11 @@ import axios from 'axios'
 import { useHistory } from "react-router-dom";
 
 const initialFormValues = {
-  email: '',
+  username: '',
   password: ''
 }
 const initialFormErrors = {
-  email: '',
+  username: '',
   password: ''
 }
 const initialUsers = []
@@ -25,10 +25,11 @@ const LoginForm = () => {
   const [disabled, setDisabled] = useState(initialDisabled)
 
   const postNewUsers = newUser => {
-    axios.post('https://reqres.in/api/users', newUser)
+    axios.post('https://secret-family-recipes-6.herokuapp.com/auth/login', newUser)
       .then(response => {
         setUsers([...users, response.data])
-        localStorage.setItem("token", response.data.payload);
+        localStorage.setItem("token", response.data.token);
+        console.log(response.data)
         window.location.assign('/recipes');
       })
       .catch(error => {
@@ -71,15 +72,15 @@ const LoginForm = () => {
     })
   }
 
-    const onSubmit = event => {
-      event.preventDefault()
-      submit()
-      // change route to home page, dashboard
+  const onSubmit = event => {
+    event.preventDefault()
+    submit()
+    // change route to home page, dashboard
   }
 
   const submit = () => {
     const newUser = {
-      email: formValues.email.trim(),
+      username: formValues.username.trim(),
       password: formValues.password.trim()
     }
     postNewUsers(newUser)
@@ -101,35 +102,33 @@ const LoginForm = () => {
 
   return (
     <div>
-    <form onSubmit={onSubmit}>
-      <h1>Login</h1>
+      <form onSubmit={onSubmit}>
+        <h1>Login</h1>
 
-      <div>
-        <div>{formErrors.name}</div>
-        <div>{formErrors.email}</div>
-        <div>{formErrors.password}</div>
-        <div>{formErrors.terms}</div>
-      </div>
+        <div>
+          <div>{formErrors.username}</div>
+          <div>{formErrors.password}</div>
+        </div>
 
-      <label>Email:     </label>
-      <input
-        value={formValues.email}
-        onChange={onChange}
-        name='email'
-        type='email'
-      />
+        <label>Username:     </label>
+        <input
+          value={formValues.username}
+          onChange={onChange}
+          name='username'
+          type='username'
+        />
 
-      <label>Password:     </label>
-      <input
-        value={formValues.password}
-        onChange={onChange}
-        name='password'
-        type='password'
-      />
+        <label>Password:     </label>
+        <input
+          value={formValues.password}
+          onChange={onChange}
+          name='password'
+          type='password'
+        />
 
-      <button disabled={disabled} id='submitBtn'>Submit</button>
-    </form>
-    {/* new users click here, or something else, need to sign up? */}
+        <button disabled={disabled} id='submitBtn'>Submit</button>
+      </form>
+      {/* new users click here, or something else, need to sign up? */}
     </div>
   )
 }
