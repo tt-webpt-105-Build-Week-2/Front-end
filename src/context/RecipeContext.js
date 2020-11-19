@@ -1,17 +1,16 @@
-
 import React, { useState, createContext } from 'react';
 import axiosWithAuth from '../utils/axiosWithAuth'
 
 export const RecipeContext = createContext();
 
-export const RecipeProvider = (props) => {
+const RecipeProvider = (props) => {
     const [recipes, setRecipes] = useState([]);
 
     const getRecipes = () => {
-        axiosWithAuth()
-            .get('/recipes')
+        axiosWithAuth().get('/recipes')
             .then((res) => {
                 setRecipes(res.data);
+                console.log(res.data)
             })
             .catch((err) => {
                 console.log(err);
@@ -25,3 +24,5 @@ export const RecipeProvider = (props) => {
     );
 
 }
+
+export default RecipeProvider

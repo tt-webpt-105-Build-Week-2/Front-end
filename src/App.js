@@ -7,8 +7,14 @@ import RecipesList from "./components/recipes/RecipesList";
 import AddRecipe from './components/recipes/AddRecipe';
 import RecipesPage from './components/recipes/RecipesPage'
 
+// Context
+import RecipeProvider  from './context/RecipeContext'
+// import RecipeState from './context/AuthState';
+// import AuthState from './context/AuthState';
+
 function App() {
   return (
+    <RecipeProvider>
     <div className='App'>
       <Navigation />
       <Switch>
@@ -20,6 +26,7 @@ function App() {
         <Route path='/recipe0' component={RecipesPage}></Route>
       </Switch>
     </div>
+    </RecipeProvider>
   );
 }
 

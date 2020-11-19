@@ -40,17 +40,6 @@ function RegistrationForm(props) {
 
   };
 
-
-  // axiosWithAuth()
-  //   .post('/auth/register', values)
-  //   .then(res => {
-  //     console.log(res)
-  //     props.postLogin(values)
-  //   })
-  //   .catch(err => {
-  //     console.log(err)
-  //   })
-
   function inputChange(event) {
     /* Destructuring the  name and value from the form inputs. */
     const { name, value } = event.target;
