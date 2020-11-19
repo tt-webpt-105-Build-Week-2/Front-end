@@ -32,45 +32,45 @@ const LoginForm = () => {
         console.log(response.data)
         window.location.assign('/recipes');
       })
-      .catch(error => {
-        // debugger 
-        console.log(error)
+      .catch((error) => {
+        // debugger
+        console.log(error);
       })
       .finally(() => {
-        setFormValues(initialFormValues)
-      })
-  }
+        setFormValues(initialFormValues);
+      });
+  };
   const validate = (name, value) => {
     //yup validation schema
     yup
       .reach(schema, name)
       .validate(value)
-      .then(valid => {
+      .then((valid) => {
         setFormErrors({
           ...formErrors,
-          [name]: ""
-        })
+          [name]: "",
+        });
       })
-      .catch(error => {
+      .catch((error) => {
         setFormErrors({
           ...formErrors,
-          [name]: error.errors[0]
-        })
-      })
-  }
+          [name]: error.errors[0],
+        });
+      });
+  };
 
-  const onChange = event => {
-    const { name, value } = event.target
-    change(name, value)
-  }
+  const onChange = (event) => {
+    const { name, value } = event.target;
+    change(name, value);
+  };
 
   const change = (name, value) => {
-    validate(name, value)
+    validate(name, value);
     setFormValues({
       ...formValues,
-      [name]: value
-    })
-  }
+      [name]: value,
+    });
+  };
 
   const onSubmit = event => {
     event.preventDefault()
@@ -87,18 +87,14 @@ const LoginForm = () => {
   }
 
   useEffect(() => {
-    console.log(formValues)
-  }, [formValues])
+    console.log(formValues);
+  }, [formValues]);
 
   useEffect(() => {
-    schema.isValid(formValues)
-      .then(valid => {
-        setDisabled(!valid)
-      })
-  }, [formValues])
-
-
-
+    schema.isValid(formValues).then((valid) => {
+      setDisabled(!valid);
+    });
+  }, [formValues]);
 
   return (
     <div>
@@ -130,8 +126,8 @@ const LoginForm = () => {
       </form>
       {/* new users click here, or something else, need to sign up? */}
     </div>
-  )
-}
+  );
+};
 
+export default LoginForm;
 
-export default LoginForm

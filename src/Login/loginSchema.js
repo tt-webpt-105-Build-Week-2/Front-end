@@ -5,5 +5,5 @@ export default yup.object().shape({
     .required('Username is required'),
   password: yup.string()
     .required('Password is required')
-    .min(7, 'Password must be at least 7 characters long')
+    .min(2, 'Password must be at least 7 characters long')
 })

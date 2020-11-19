@@ -1,4 +1,4 @@
-form {
+.form2 {
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -16,33 +16,30 @@ form {
   border-radius: 25px;
 }
 
-form h1 {
+.form2 h1 {
   margin-bottom: 15px;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
 }
 
-form a {
+.form2 a {
   color: black;
   text-decoration: underline;
 }
 
-input {
+#email2,
+#password2 {
   display: inline-block;
   float: right;
 }
 
-#check {
-  margin: 10px 35px 0 0;
-}
-
-form button {
+.form2 #button2 {
   margin: 15px 0;
   color: black;
   border-radius: 25px;
 }
 
-form button:hover {
+.form2 #button2:hover {
   background-color: #f54c3c;
   border: #f54c3c;
 }
