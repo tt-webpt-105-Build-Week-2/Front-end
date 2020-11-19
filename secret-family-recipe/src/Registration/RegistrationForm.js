@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import * as yup from "yup";
 import formSchema from "./registrationSchema";
-import { Route, Switch } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import "./RegistrationForm.css";
 
@@ -111,11 +111,15 @@ function RegistrationForm(props) {
             onChange={inputChange}
           />
         </div>
+        
         <div className="submit">
+        <Link to='/login'>
           <button id="button" type="submit" disabled={buttonDisabled}>
             Submit
           </button>
+          </Link>
         </div>
+        
         </form>
     </div>
   );
