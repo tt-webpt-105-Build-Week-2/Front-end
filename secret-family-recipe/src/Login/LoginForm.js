@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './LoginForm.css';
 import schema from './loginSchema'
 import * as yup from 'yup'
-import { Route, Switch } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { useHistory } from "react-router-dom";
 
@@ -128,6 +128,11 @@ const LoginForm = () => {
       />
 
       <button disabled={disabled} id='submitBtn'>Submit</button>
+      
+      <div className='loginLink'>
+      <Link to='/register'>Not a member? Register here.</Link>
+      </div>
+      
     </form>
     {/* new users click here, or something else, need to sign up? */}
     </div>
