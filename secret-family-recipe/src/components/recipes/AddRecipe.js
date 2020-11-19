@@ -113,9 +113,12 @@ const AddRecipe = () => {
 
 
   return(
-    <div>
+    <div className='addRecipeForm'>
       <form onSubmit={onSubmit} className='addRecipe'>
-        <h1>Add Recipe Here!</h1>
+        <h1>Add Recipe</h1>
+
+        
+        <div className='addRecipeItems'>
 
         {/* title */}
         <label>Title:     
@@ -176,6 +179,8 @@ const AddRecipe = () => {
 </label>
 
         <button disabled={disabled} id='submitBtn'>Submit</button>
+
+        </div>
       </form>
 
 
