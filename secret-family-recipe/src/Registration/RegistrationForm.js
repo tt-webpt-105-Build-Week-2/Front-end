@@ -19,6 +19,7 @@ function RegistrationForm(props) {
     setFormValues({ ...formValues, [event.target.name]: value });
   };
 
+ 
   function inputChange(event) {
     /* Destructuring the  name and value from the form inputs. */
     const { name, value } = event.target;
@@ -65,9 +66,9 @@ function RegistrationForm(props) {
           rel="stylesheet"
         />
       </head>
-      <form onSubmit={submitForm}>
-        <h1>Register</h1>
-        <div class="name">
+      <form className="form" onSubmit={submitForm}>
+        <h1 className="head1">Register</h1>
+        <div className="name">
           <label>Name:</label>
           <input
             type="text"
@@ -78,7 +79,7 @@ function RegistrationForm(props) {
             onChange={inputChange}
           />
         </div>
-        <div class="email">
+        <div className="email">
           <label>Email:</label>
           <input
             type="email"
@@ -89,7 +90,7 @@ function RegistrationForm(props) {
             onChange={inputChange}
           />
         </div>
-        <div class="password">
+        <div className="password">
           <label>Password:</label>
           <input
             type="password"
@@ -100,7 +101,7 @@ function RegistrationForm(props) {
             onChange={inputChange}
           />
         </div>
-        <div class="terms">
+        <div className="terms">
           <a href="#">Terms of Service</a>
           <input
             id="check"
@@ -110,12 +111,12 @@ function RegistrationForm(props) {
             onChange={inputChange}
           />
         </div>
-        <div class="submit">
-          <button type="submit" disabled={buttonDisabled}>
+        <div className="submit">
+          <button id="button" type="submit" disabled={buttonDisabled}>
             Submit
           </button>
         </div>
-      </form>
+        </form>
     </div>
   );
 }
