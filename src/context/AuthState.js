@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 import AuthContext from './AuthContext';
 import AuthReducer from './AuthReducer';
-import AxiosAuth from '../utils/AxiosAuth';
+import AxiosAuth from '../utils/axiosWithAuth'
 import { USER_LOADED, LOGIN, LOGOUT } from './Types';
 import { createContext } from 'react';
 

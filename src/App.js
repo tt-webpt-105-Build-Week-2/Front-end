@@ -5,27 +5,33 @@ import LoginForm from './Login/LoginForm';
 import RegistrationForm from './Registration/RegistrationForm';
 import RecipesList from "./components/recipes/RecipesList";
 import AddRecipe from './components/recipes/AddRecipe';
-import RecipesPage from './components/recipes/RecipesPage'
+import RecipePage from './components/recipes/RecipePage'
 
 // Context
-import RecipeProvider  from './context/RecipeContext'
-// import RecipeState from './context/AuthState';
+import RecipeProvider from './context/RecipeContext'
 // import AuthState from './context/AuthState';
+// import RecipeState from './context/AuthState';
 
 function App() {
   return (
     <RecipeProvider>
-    <div className='App'>
-      <Navigation />
-      <Switch>
-        <PrivateRoute exact path='/recipes' component={RecipesList} />
-        <Route path='/register' component={RegistrationForm} />
-        <Route path='/login' component={LoginForm} />
-        <Route path='/addrecipe' component={AddRecipe} />
 
-        <Route path='/recipe0' component={RecipesPage}></Route>
-      </Switch>
-    </div>
+
+          <div className='App'>
+            <Navigation />
+            <Switch>
+              <PrivateRoute exact path='/recipes' component={RecipesList} />
+              <Route path='/register' component={RegistrationForm} />
+              <Route path='/login' component={LoginForm} />
+              <Route path='/addrecipe' component={AddRecipe} />
+              <Route path="/recipe/:id" component={RecipePage} >
+                <RecipePage />
+              </Route>
+            </Switch>
+          </div>
+
+
+
     </RecipeProvider>
   );
 }

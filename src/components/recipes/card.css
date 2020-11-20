@@ -1,6 +1,12 @@
+.recipe-list{
+  display: flex;
+  flex-wrap: wrap; 
+}
+
 .card-container {
   width: 18rem;
   overflow: hidden;
+  margin: 1rem;
 }
 
 .card-img {

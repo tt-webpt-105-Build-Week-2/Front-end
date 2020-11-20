@@ -2,23 +2,22 @@ import React, { useContext, useEffect, useState } from 'react'
 // import { Spinner } from 'react-bootstrap'
 import axiosWithAuth from '../../utils/axiosWithAuth'
 import RecipeCard from './RecipeCard'
+import './card.css'
 
 // Context
-import RecipeProvider, { RecipeContext } from '../../context/RecipeContext'
-import AuthState from '../../context/RecipeContext'
-import AuthContext from '../../context/AuthContext'
+import { RecipeContext } from '../../context/RecipeContext'
+
 
 
 const RecipesList = ({ recipe }) => {
-    const [recipes] = useContext(RecipeContext);
-    const { user } = AuthContext;
-    const [allRecipes, setAllRecipes] = useState([]);
+    const [recipes, setRecipes] = useContext(RecipeContext);
+    // const { user } = AuthContext;
     useEffect(() => {
         const getRecipes = () => {
             axiosWithAuth()
             .get(`/recipes`)
             .then(res => {
-                setAllRecipes(res.data);
+                setRecipes(res.data);
                 console.log('recipes: ', res);
             })
             .catch(error => {
@@ -33,11 +32,9 @@ const RecipesList = ({ recipe }) => {
         <div >
             {/* <Spinner animation="border" variant="warning" /> */}
             <div className="user-banner">
-                <h3>My Recipes {recipes.message}!</h3>
             </div>
-
             <div className="recipe-list">
-                {allRecipes.map(recipe => (
+                {recipes.map(recipe => (
                     <div key={recipe.id}>
                         <RecipeCard
                             title={recipe.title}
