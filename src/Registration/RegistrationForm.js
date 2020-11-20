@@ -4,6 +4,7 @@ import formSchema from "./registrationSchema";
 import { Route, Switch } from "react-router-dom";
 import axiosWithAuth from '../utils/axiosWithAuth';
 import "./RegistrationForm.css";
+import axios from 'axios'
 import { useHistory } from 'react-router-dom';
 
 function RegistrationForm(props) {
@@ -21,15 +22,15 @@ function RegistrationForm(props) {
 
   const submitForm = (event) => {
     event.preventDefault();
-    const value =
-      event.target.type === "checkbox"
-        ? event.target.checked
-        : event.target.value;
-    setFormValues({ ...formValues, [event.target.name]: value });
+    // const value =
+    //   event.target.type === "checkbox"
+    //     ? event.target.checked
+    //     : event.target.value;
+    // setFormValues({ ...formValues, [event.target.name] });
     console.log(formValues)
-    
-    axiosWithAuth()
-      .post('/auth/register', formValues)
+
+    axios
+      .post('https://secret-family-recipes-6.herokuapp.com/auth/register', formValues)
       .then(res => {
         console.log(res)
         // props.postLogin(formValues)
@@ -48,18 +49,18 @@ function RegistrationForm(props) {
         'validate' checks that the value/user input is valid-based on requirements in formSchema.
         'then' is what happens when successful (in this case, nothing, since there is nothing in the ()). 
         'catch' is what happens when the inputs are not valid per the formSchema (e.g. logs the message in the .required()). */
-    if (name === "checkbox") {
-      yup
-        .reach(formSchema, name)
-        .validate(event.target.checked)
-        .then(() => { })
-        .catch((error) => { });
+    // if (name === "checkbox") {
+    //   yup
+    //     .reach(formSchema, name)
+    //     .validate(event.target.checked)
+    //     .then(() => { })
+    //     .catch((error) => { });
 
-      setFormValues({
-        ...formValues,
-        [name]: event.target.checked,
-      });
-    } else {
+    //   setFormValues({
+    //     ...formValues,
+    //     [name]: event.target.checked,
+    //   });
+    // } else {
       yup
         .reach(formSchema, name)
         .validate(value)
@@ -71,7 +72,7 @@ function RegistrationForm(props) {
         [name]: value,
       });
     }
-  }
+  // }
 
   useEffect(() => {
     formSchema.isValid(formValues).then((valid) => {
@@ -139,7 +140,7 @@ function RegistrationForm(props) {
             onChange={inputChange}
           />
         </div>
-        <div className="terms">
+        {/* <div className="terms">
           <a href="#">Terms of Service</a>
           <input
             id="check"
@@ -147,8 +148,8 @@ function RegistrationForm(props) {
             name="checkbox"
             value={formValues.checkbox}
             onChange={inputChange}
-          />
-        </div>
+          /> */}
+        {/* </div> */}
         <div className="submit">
           <button type="submit" disabled={buttonDisabled}>
             Submit

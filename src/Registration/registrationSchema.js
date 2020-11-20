@@ -6,7 +6,7 @@ let formSchema = yup.object().shape({
   username: yup.string().required("username is a required field."),
   email: yup.string().required("Email is a required field.").email(),
   password: yup.string().required("Please enter your password"),
-  checkbox: yup.boolean().oneOf([true], "You obviously need to read the Terms!")
+  // checkbox: yup.boolean().oneOf([true], "You obviously need to read the Terms!")
 });
 
 export default formSchema;
