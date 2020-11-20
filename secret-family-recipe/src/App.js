@@ -1,7 +1,7 @@
 import { Switch, Route } from 'react-router-dom'
 import Navigation from './components/Navigation'
 import PrivateRoute from './utils/PrivateRoute'
-import LoginForm from './Login/LoginForm';
+import LoginForm from './Login/oldLoginForm';
 import RegistrationForm from './Registration/RegistrationForm';
 import RecipesList from "./components/recipes/RecipesList";
 import AddRecipe from './components/recipes/AddRecipe';
