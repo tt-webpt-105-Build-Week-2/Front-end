@@ -122,61 +122,61 @@ const AddRecipe = () => {
 
         {/* title */}
         <label>Title:     
-        <input 
-        value={formValues.title}
-        onChange={onChange}
-        name='title'
-        type='text'
-        />
+          <input 
+            value={formValues.title}
+            onChange={onChange}
+            name='title'
+            type='text'
+          />
         </label>
 
         {/* source */}
         <label>Source:     
-        <input 
-        value={formValues.source}
-        onChange={onChange}
-        name='source'
-        type='text'
-        />
+          <input 
+            value={formValues.source}
+            onChange={onChange}
+            name='source'
+            type='text'
+          />
         </label>
 
         {/* ingredients */}
         <label>Ingredients:     
-        <textarea 
-        value={formValues.ingredients}
-        onChange={onChange}
-        name='ingredients'
-        type='text'
-        />
+          <textarea 
+            value={formValues.ingredients}
+            onChange={onChange}
+            name='ingredients'
+            type='text'
+          />
         </label>
 
         {/* instructions */}
         <label>Instructions:     
-        <textarea 
-        value={formValues.instructions}
-        onChange={onChange}
-        name='instructions'
-        type='text'
-        />
+          <textarea 
+            value={formValues.instructions}
+            onChange={onChange}
+            name='instructions'
+            type='text'
+          />
         </label>
 
         {/* category */}
         <label>Category:       
-        <select 
-        onChange={onDropdownChange}
-        value={category}
-        name='category'
-        required
-        >
-          <option value=''>- Select an option -</option>
+          <select 
+            onChange={onDropdownChange}
+            value={category}
+            name='category'
+            required
+          >
+            <option value=''>- Select an option -</option>
             <option value='appetizer'>appetizer</option>
             <option value='entree'>entree</option>
             <option value='sides'>sides</option>
             <option value='dessert'>dessert</option>
             <option value='snack'>snack</option>
             <option value='beverage'>beverage</option>
-        </select>
-</label>
+          </select>
+        </label>
 
         <button disabled={disabled} id='submitBtn'>Submit</button>
 
