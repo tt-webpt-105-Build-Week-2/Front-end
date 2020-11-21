@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import schema from './addRecipeSchema'
-import  * as yup from 'yup'
-import axios from 'axios'
+import * as yup from 'yup'
+import axiosWithAuth from '../../utils/axiosWithAuth'
 
 const initialFormValues = {
   title: '',
@@ -26,12 +27,14 @@ const AddRecipe = () => {
   const [formErrors, setFormErrors] = useState(initialFormErrors)
   const [disabled, setDisabled] = useState(initialDisabled)
   const [category, setCategory] = useState('')
+  const { push } = useHistory()
 
   const postNewRecipe = newRecipe => {
-    axios.post('https://reqres.in/api/users:', newRecipe)
+    axiosWithAuth().post('/recipes', newRecipe)
       .then(response => {
         console.log(response)
         setRecipes([response.data, ...recipes])
+        window.location.assign('/recipes');
       })
       .catch(error => {
         console.log(error)
@@ -41,9 +44,9 @@ const AddRecipe = () => {
       })
   }
 
-    const validate = (name, value) => {
-      //for yup schema
-      yup
+  const validate = (name, value) => {
+    //for yup schema
+    yup
       .reach(schema, name)
       .validate(value)
       .then(valid => {
@@ -58,25 +61,25 @@ const AddRecipe = () => {
           [name]: error.errors
         })
       })
-    }
+  }
 
-    const onChange = event => {
-      const { name, value } = event.target
-      change(name, value)
-    }
-  
-    const change = (name, value) => {
-      validate(name, value)
-      setFormValues({
-        ...formValues,
-        [name]: value
-      })
-    } 
+  const onChange = event => {
+    const { name, value } = event.target
+    change(name, value)
+  }
 
-    const onSubmit = event => {
-      event.preventDefault()
-      submit()
-      setCategory('')
+  const change = (name, value) => {
+    validate(name, value)
+    setFormValues({
+      ...formValues,
+      [name]: value
+    })
+  }
+
+  const onSubmit = event => {
+    event.preventDefault()
+    submit()
+    setCategory('')
   }
 
   const submit = () => {
@@ -91,7 +94,7 @@ const AddRecipe = () => {
   }
 
   const onDropdownChange = (e) => {
-    const { name, value} = e.target
+    const { name, value } = e.target
     setCategory(value)
     setFormValues({
       ...formValues,
@@ -99,11 +102,11 @@ const AddRecipe = () => {
     })
   }
 
-  useEffect (() => {
+  useEffect(() => {
     console.log(formValues)
   }, [formValues])
 
-  useEffect (() => {
+  useEffect(() => {
     schema.isValid(formValues)
       .then(valid => {
         setDisabled(!valid)
@@ -112,73 +115,77 @@ const AddRecipe = () => {
 
 
 
-  return(
+  return (
     <div className='addRecipeForm'>
       <form onSubmit={onSubmit} className='addRecipe'>
         <h1>Add Recipe</h1>
 
-        
+
         <div className='addRecipeItems'>
 
-        {/* title */}
-        <label>Title:     
-        <input 
-        value={formValues.title}
-        onChange={onChange}
-        name='title'
-        type='text'
-        />
-        </label>
+          {/* title */}
+          <label>Title:
+        <input
+              value={formValues.title}
+              onChange={onChange}
+              name='title'
+              type='text'
+            />
+          </label>
 
-        {/* source */}
-        <label>Source:     
-        <input 
-        value={formValues.source}
-        onChange={onChange}
-        name='source'
-        type='text'
-        />
-        </label>
+          {/* source */}
+          <label>Source:
+        <input
+              value={formValues.source}
+              onChange={onChange}
+              name='source'
+              type='text'
+            />
+          </label>
 
-        {/* ingredients */}
-        <label>Ingredients:     
-        <textarea 
-        value={formValues.ingredients}
-        onChange={onChange}
-        name='ingredients'
-        type='text'
-        />
-        </label>
+          {/* ingredients */}
+          <label>Ingredients:
+        <textarea
+              value={formValues.ingredients}
+              onChange={onChange}
+              name='ingredients'
+              type='text'
+            />
+          </label>
 
-        {/* instructions */}
-        <label>Instructions:     
-        <textarea 
-        value={formValues.instructions}
-        onChange={onChange}
-        name='instructions'
-        type='text'
-        />
-        </label>
+          {/* instructions */}
+          <label>Instructions:
+        <textarea
+              value={formValues.instructions}
+              onChange={onChange}
+              name='instructions'
+              type='text'
+            />
+          </label>
 
-        {/* category */}
-        <label>Category:       
-        <select 
-        onChange={onDropdownChange}
-        value={category}
-        name='category'
-        required
-        >
-          <option value=''>- Select an option -</option>
-            <option value='appetizer'>appetizer</option>
-            <option value='entree'>entree</option>
-            <option value='sides'>sides</option>
-            <option value='dessert'>dessert</option>
-            <option value='snack'>snack</option>
-            <option value='beverage'>beverage</option>
-        </select>
-</label>
+          {/* category */}
+          <label>Category:
+        <select
+              onChange={onDropdownChange}
+              value={category}
+              name='category'
+              required
+            >
+              <option value=''>- Select an option -</option>
+              <option value='appetizer'>appetizer</option>
+              <option value='entree'>entree</option>
+              <option value='sides'>sides</option>
+              <option value='dessert'>dessert</option>
+              <option value='snack'>snack</option>
+              <option value='beverage'>beverage</option>
+            </select>
+          </label>
 
-        <button disabled={disabled} id='submitBtn'>Submit</button>
+          <label htmlFor="">Recipe img
+            <input type="text"/>
+          </label>
+
+          <button disabled={disabled} id='submitBtn'>Submit</button>
 
         </div>
       </form>

@@ -42,3 +42,8 @@
     margin-top: 1.2rem;
   }
 }
+
+.recipe-image-wrapper {
+  width: 100%;
+  display: absolute;
+}
