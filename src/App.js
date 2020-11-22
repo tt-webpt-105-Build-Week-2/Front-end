@@ -15,7 +15,9 @@ import EditPage from './components/recipes/EditPage';
 
 function App() {
   return (
-    <RecipeProvider>
+    <RecipeProvider
+    
+    >
 
       <div className='App'>
         <Navigation />

@@ -9,14 +9,16 @@ const initialFormValues = {
   source: '',
   ingredients: '',
   instructions: '',
-  category: ''
+  category: '',
+  recipe_img: ''
 }
 const initialFormErrors = {
   title: '',
   source: '',
   ingredients: '',
   instructions: '',
-  category: ''
+  category: '',
+  recipe_img: ''
 }
 const initialRecipes = []
 const initialDisabled = true
@@ -88,7 +90,8 @@ const AddRecipe = () => {
       source: formValues.source.trim(),
       ingredients: formValues.ingredients.trim(),
       instructions: formValues.instructions.trim(),
-      category: formValues.category
+      category: formValues.category,
+      recipe_img: formValues.recipe_img
     }
     postNewRecipe(newRecipe)
   }
@@ -181,8 +184,14 @@ const AddRecipe = () => {
             </select>
           </label>
 
-          <label htmlFor="">Recipe img
-            <input type="text"/>
+          <label htmlFor="">Recipe Image
+            <input
+            value={formValues.recipe_img}
+            onChange={onChange}
+            name='recipe_img'
+            type="text"
+            />
+
           </label>
 
           <button disabled={disabled} id='submitBtn'>Submit</button>

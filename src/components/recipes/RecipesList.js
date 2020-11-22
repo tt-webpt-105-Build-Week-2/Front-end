@@ -1,31 +1,16 @@
 import React, { useContext, useEffect } from 'react'
-import axiosWithAuth from '../../utils/axiosWithAuth'
 import RecipeCard from './RecipeCard'
 import './RecipeCard.css'
 
 // Context
 import { RecipeContext } from '../../context/RecipeContext'
 
-
-
 const RecipesList = () => {
-    const [recipes, setRecipes] = useContext(RecipeContext);
+    const [recipes, setRecipes, getRecipes ] = useContext(RecipeContext);
 
     useEffect(() => {
-        const getRecipes = () => {
-            axiosWithAuth()
-                .get(`/recipes`)
-                .then(res => {
-                    setRecipes(res.data);
-                    console.log('recipes: ', res);
-                })
-                .catch(error => {
-                    console.error('Server Error', error);
-                });
-        }
-        getRecipes();
+        getRecipes() 
     }, []);
-
 
     return (
         <div style={{ margin: 'auto', maxWidth: '1000px' }}>

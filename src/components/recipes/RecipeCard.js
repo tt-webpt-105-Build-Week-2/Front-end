@@ -1,14 +1,20 @@
-import React, { useContext } from 'react'
-import { RecipeContext } from '../../context/RecipeContext'
+import React from 'react'
 import { Card, Button } from 'react-bootstrap';
+import { useHistory } from "react-router-dom";
 import './RecipeCard.css'
 
 
-const RecipeCard = ({ title, source, pic, id, category }) => {
-    // const [recipes, setRecipes] = useContext(RecipeContext);
+const RecipeCard = ({ title, source, pic, id }) => {
+    const history = useHistory();
+
+    const routeChange = () => {
+        let path = `/recipe/${id}`;
+        history.push(path);
+    }
+
     return (
         <div >
-            <Card className="card-container">
+            <Card onClick={routeChange} className="card-container">
                 <Card.Img variant="top" className="card-img" src={pic} />
                 <Card.Body >
                     <Card.Title >{title}</Card.Title>

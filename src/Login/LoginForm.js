@@ -5,6 +5,9 @@ import * as yup from 'yup'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { useHistory } from "react-router-dom";
+import jwt from 'jwt-decode'
+
+
 
 const initialFormValues = {
   username: '',
@@ -30,7 +33,7 @@ const LoginForm = () => {
       .then(response => {
         setUsers([...users, response.data])
         localStorage.setItem("token", response.data.token);
-        console.log(response.data)
+        console.log('login successful', response.data)
         history.push('/recipes');
       })
       .catch((error) => {
@@ -108,32 +111,34 @@ const LoginForm = () => {
         </div>
 
         <div className="email2">
-        <label>Username:     </label>
-        <input
-          value={formValues.username}
-          onChange={onChange}
-          name='username'
-          type='username'
-        />
-        </div>   
+          <label>Username:     </label>
+          <input
+            value={formValues.username}
+            onChange={onChange}
+            name='username'
+            type='username'
+          />
+        </div>
 
-         <div className="password2">
-        <label>Password:     </label>
-        <input
-          value={formValues.password}
-          onChange={onChange}
-          name='password'
-          type='password'
-        />
+        <div className="password2">
+          <label>Password:     </label>
+          <input
+            value={formValues.password}
+            onChange={onChange}
+            autoComplete='true'
+            suggested="current-password"
+            name='password'
+            type='password'
+          />
         </div>
 
         <button disabled={disabled} id='button2'>Submit</button>
-      
-      {/* new users click here, or something else, need to sign up? */}
-      <div className='loginLink'>
-            <Link to='/register'>Not a member? Register here.</Link>
+
+        {/* new users click here, or something else, need to sign up? */}
+        <div className='loginLink'>
+          <Link to='/register'>Not a member? Register here.</Link>
         </div>
-        </form>
+      </form>
     </div>
   );
 };
