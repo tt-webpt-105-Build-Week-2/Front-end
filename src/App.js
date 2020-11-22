@@ -25,7 +25,7 @@ function App() {
           <Route exact path='/login' component={LoginForm} />
           <Route exact path='/register' component={RegistrationForm} />
           <Route exact path='/addrecipe' component={AddRecipe} />
-
+        {/* conditional routing? */}
           <PrivateRoute path="/recipe/:id" component={RecipePage} >
             <RecipePage />
 
