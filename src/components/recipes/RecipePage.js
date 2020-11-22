@@ -42,26 +42,26 @@ const RecipePage = () => {
     return (
         <div className='page-container'>
             <div>
-            <div className='button-container'>
-                <Button variant='primary' onClick={() => history.push(`/edit/${id}`)}>Edit Recipe</Button>
-            </div>
+                <div className='button-container'>
+                    <Button variant='primary' onClick={() => history.push(`/edit/${id}`)}>Edit Recipe</Button>
+                </div>
                 <h2 className='title'>{recipe.title}</h2>
-                <img className='recipe-img' src={recipe.recipe_img} alt="" />
             </div>
 
-            {/* <div className='recipe-image-wrapper'>
-                <img src={recipe.recipe_img} alt="recipe_image"/>
-            </div> */}
-            <div className='recipe-wrapper'>
+            <div className='recipe-and-img'>
+                <img className='recipe-img' src={recipe.recipe_img} alt="" />
+                <div className='recipe-wrapper'>
+                    <div className='ingredients'>
+                        <h2>Ingredients:</h2>
+                        <p>{recipe.ingredients}</p>
+                    </div>
 
-                <div className='ingredients'>
-                    <h2>Ingredients:</h2>
-                    <p>{recipe.ingredients}</p>
+                    <div className='directions'>
+                        <h2>Directions:</h2>
+                        <p>{recipe.instructions}</p>
+                    </div>
                 </div>
-                <div className='directions'>
-                    <h2>Directions:</h2>
-                    <p>{recipe.instructions}</p>
-                </div>
+
             </div>
             <div className='button-container'>
                 <Button variant='danger' onClick={() => deleteRecipe()}> Delete Recipe</Button>
