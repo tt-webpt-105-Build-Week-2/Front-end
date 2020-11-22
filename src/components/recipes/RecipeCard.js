@@ -10,7 +10,7 @@ const RecipeCard = ({ title, source, pic, id, category }) => {
         <div >
             <Card className="card-container">
                 <Card.Img variant="top" className="card-img" src={pic} />
-                <Card.Body>
+                <Card.Body >
                     <Card.Title >{title}</Card.Title>
                     <Card.Text>
                         <em>By: {source}</em>
