@@ -3,6 +3,8 @@ import { useHistory } from 'react-router-dom';
 import schema from './addRecipeSchema'
 import * as yup from 'yup'
 import axiosWithAuth from '../../utils/axiosWithAuth'
+import { Col, Button, Form, FormGroup, Label, Input, FormText} from 'reactstrap'
+import './AddRecipe.css'
 
 const initialFormValues = {
   title: '',
@@ -116,55 +118,90 @@ const AddRecipe = () => {
 
 
   return (
+    <div className='container'>
     <div className='addRecipeForm'>
-      <form onSubmit={onSubmit} className='addRecipe'>
-        <h2>Add Recipe</h2>
+      <Form onSubmit={onSubmit} className='addRecipe'>
+        
+        <h2 className='addRecipe'>Add Recipe</h2>
 
 
         <div className='addRecipeItems'>
-
+        
           {/* title */}
-          <label>Title:
-        <input
+          
+          <FormGroup row>
+          
+          <Label>Title</Label>
+          <Col sm={10}>
+        <Input
               value={formValues.title}
               onChange={onChange}
               name='title'
               type='text'
             />
-          </label>
-
+          </Col>
+          </FormGroup>
+          
           {/* source */}
-          <label>Source:
-        <input
+          
+          <FormGroup row>
+          <Label>Source </Label>
+          <Col sm={10}>
+        <Input
               value={formValues.source}
               onChange={onChange}
               name='source'
               type='text'
             />
-          </label>
+          </Col>    
+         
+          </FormGroup>
+          
+          
 
           {/* ingredients */}
-          <label>Ingredients:
+          
+          
+          <FormGroup row>
+          <Label>Ingredients</Label>
+          <Col md={6}>
         <textarea
+        placeholder="List ingredients here"
+              rows="4"
+              col="50"
               value={formValues.ingredients}
               onChange={onChange}
               name='ingredients'
               type='text'
-            />
-          </label>
-
+              />
+          </Col>
+          </FormGroup>
+          
           {/* instructions */}
-          <label>Instructions:
+          
+          <FormGroup row>
+          <Label>Instructions</Label>
+          <Col md={6}>
         <textarea
+        placeholder="Add instructions here"
+              rows="6"
+              col="50"
               value={formValues.instructions}
               onChange={onChange}
               name='instructions'
               type='text'
-            />
-          </label>
-
+              />
+          </Col>
+          </FormGroup>
+          
+        
           {/* category */}
-          <label>Category:
+          
+          
+          <FormGroup row>
+          
+          <Label>Category</Label>
+          <Col md={6}>
         <select
               onChange={onDropdownChange}
               value={category}
@@ -179,18 +216,25 @@ const AddRecipe = () => {
               <option value='snack'>snack</option>
               <option value='beverage'>beverage</option>
             </select>
-          </label>
-
-          <label htmlFor="">Recipe img
-            <input type="text"/>
-          </label>
-
-          <button disabled={disabled} id='submitBtn'>Submit</button>
+            </Col>
+          </FormGroup>
+          
+          
+          <FormGroup row>
+          
+          <Label htmlFor="">Recipe img</Label>
+          <Col sm={10}>
+            <Input type="text"/>
+          </Col>
+          </FormGroup>
+          
+          <Button color='danger' disabled={disabled} id='submitBtn'>Submit</Button>
 
         </div>
-      </form>
+      </Form>
 
 
+    </div>
     </div>
 
   )
