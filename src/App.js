@@ -9,6 +9,7 @@ import RecipePage from './components/recipes/RecipePage'
 
 // Context
 import RecipeProvider from './context/RecipeContext'
+import EditPage from './components/recipes/EditPage';
 // import AuthState from './context/AuthState';
 // import RecipeState from './context/AuthState';
 
@@ -17,18 +18,25 @@ function App() {
     <RecipeProvider>
 
 
-          <div className='App'>
-            <Navigation />
-            <Switch>
-              <PrivateRoute exact path='/recipes' component={RecipesList} />
-              <Route path='/register' component={RegistrationForm} />
-              <Route path='/login' component={LoginForm} />
-              <Route path='/addrecipe' component={AddRecipe} />
-              <Route path="/recipe/:id" component={RecipePage} >
-                <RecipePage />
-              </Route>
-            </Switch>
-          </div>
+      <div className='App'>
+        <Navigation />
+        <Switch>
+          <PrivateRoute exact path='/recipes' component={RecipesList} />
+
+          <Route path='/register' component={RegistrationForm} />
+          <Route path='/login' component={LoginForm} />
+          <Route path='/addrecipe' component={AddRecipe} />
+
+          <PrivateRoute path="/recipe/:id" component={RecipePage} >
+            <RecipePage />
+
+          </PrivateRoute>
+          <Route path='/edit/:id' component={EditPage}>
+            <EditPage />
+          </Route>
+
+        </Switch>
+      </div>
 
 
 
