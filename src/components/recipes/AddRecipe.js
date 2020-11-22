@@ -133,7 +133,7 @@ const AddRecipe = () => {
           
           <Label>Title</Label>
           <Col sm={10}>
-        <Input
+          <Input
               value={formValues.title}
               onChange={onChange}
               name='title'
@@ -147,7 +147,7 @@ const AddRecipe = () => {
           <FormGroup row>
           <Label>Source </Label>
           <Col sm={10}>
-        <Input
+          <Input
               value={formValues.source}
               onChange={onChange}
               name='source'
@@ -165,8 +165,8 @@ const AddRecipe = () => {
           <FormGroup row>
           <Label>Ingredients</Label>
           <Col md={6}>
-        <textarea
-        placeholder="List ingredients here"
+          <textarea
+              placeholder=" List ingredients here"
               rows="4"
               col="50"
               value={formValues.ingredients}
@@ -182,8 +182,8 @@ const AddRecipe = () => {
           <FormGroup row>
           <Label>Instructions</Label>
           <Col md={6}>
-        <textarea
-        placeholder="Add instructions here"
+          <textarea
+              placeholder=" Add instructions here"
               rows="6"
               col="50"
               value={formValues.instructions}
@@ -202,7 +202,7 @@ const AddRecipe = () => {
           
           <Label>Category</Label>
           <Col md={6}>
-        <select
+            <select
               onChange={onDropdownChange}
               value={category}
               name='category'
