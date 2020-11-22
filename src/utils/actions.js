@@ -15,7 +15,7 @@ export const postLogin = credentials => dispatch => {
     axiosWithAuth()
         .post('/auth/login', credentials)
         .then(res => {
-            console.log(res)
+            console.log('login successful', res)
             localStorage.setItem('token', res.data.token)
             localStorage.setItem('userId', res.data.id)
             dispatch({ type: LOGIN_SUCCESS, payload: res.data.id })

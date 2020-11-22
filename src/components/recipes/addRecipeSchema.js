@@ -12,6 +12,7 @@ export default yup.object().shape({
   category: yup.string()
     .ensure()
     .required('Picking a category is required')
-    .notOneOf([''])
+    .notOneOf(['']),
+  recipe_img: yup.string()
 
 })

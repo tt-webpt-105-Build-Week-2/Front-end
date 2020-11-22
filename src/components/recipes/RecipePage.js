@@ -8,58 +8,59 @@ import './RecipePage.css'
 import { Button } from 'react-bootstrap'
 
 const RecipePage = () => {
-    const [recipes, setRecipes] = useContext(RecipeContext);
-    const { id } = useParams()
+    const [recipe, setRecipe] = useContext(RecipeContext);
     let history = useHistory()
+    const { id } = useParams()
+
 
     useEffect(() => {
-        const getRecipes = () => {
-            axiosWithAuth()
-                .get(`/recipes/${id}`)
-                .then(res => {
-                    setRecipes(res.data);
-                    console.log('recipes: ', res);
-                })
-                .catch(error => {
-                    console.error('Server Error', error);
-                });
-        }
-        getRecipes();
-    }, []);
-
+        axiosWithAuth()
+            .get(`/recipes/${id}`)
+            .then(res => {
+                setRecipe(res.data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }, [id])
 
     const deleteRecipe = () => {
         axiosWithAuth()
             .delete(`/recipes/${id}`)
             .then((res) => {
+                console.log('recipe deleted', res)
                 history.push('/recipes');
             })
             .catch((err) => {
-                console.log(err);
+                console.log('delete error', err);
             });
     };
 
-    if (!recipes) {
-        return <div><Spinner animation="border" variant="secondary" /></div>;
+    if (!recipe) {
+        return <div style={{ margin: '5%' }}><Spinner animation="border" variant="secondary" /></div>;
     }
     return (
         <div className='page-container'>
-            <h2 className='title'>{recipes.title}</h2>
+            <div>
             <div className='button-container'>
                 <Button variant='primary' onClick={() => history.push(`/edit/${id}`)}>Edit Recipe</Button>
             </div>
+                <h2 className='title'>{recipe.title}</h2>
+                <img className='recipe-img' src={recipe.recipe_img} alt="" />
+            </div>
+
             {/* <div className='recipe-image-wrapper'>
-                <img src={recipes.recipe_img} alt="recipe_image"/>
+                <img src={recipe.recipe_img} alt="recipe_image"/>
             </div> */}
             <div className='recipe-wrapper'>
 
                 <div className='ingredients'>
                     <h2>Ingredients:</h2>
-                    <p>{recipes.ingredients}</p>
+                    <p>{recipe.ingredients}</p>
                 </div>
                 <div className='directions'>
                     <h2>Directions:</h2>
-                    <p>{recipes.instructions}</p>
+                    <p>{recipe.instructions}</p>
                 </div>
             </div>
             <div className='button-container'>

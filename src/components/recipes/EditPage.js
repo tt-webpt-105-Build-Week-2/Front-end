@@ -1,31 +1,22 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 import { Form, Button, Row, Col } from 'react-bootstrap'
-import { RecipeContext } from '../../context/RecipeContext'
+import { RecipeContext } from '../../context/RecipeContext';
 import axiosWithAuth from '../../utils/axiosWithAuth'
 
-const initialFormValues = {
-    title: '',
-    source: '',
-    ingredients: '',
-    instructions: '',
-    category: '',
-    recipe_img: '',
-
-
-};
 
 const EditPage = () => {
+    const [recipe] = useContext(RecipeContext);
+    const [initialRecipe, setInitialRecipe] = useState(recipe)
     const { id } = useParams()
     const history = useHistory()
-    const [recipe, setRecipe] = useState(initialFormValues)
+
 
     useEffect(() => {
         axiosWithAuth()
             .get(`/recipes/${id}`)
             .then(res => {
-                setRecipe(res.data)
-                console.log(recipe)
+                setInitialRecipe(res.data)
             })
             .catch(err => {
                 console.log(err)
@@ -34,17 +25,17 @@ const EditPage = () => {
 
     const handleChange = ev => {
         ev.persist()
-        setRecipe({ ...recipe, [ev.target.name]: ev.target.value })
+        setInitialRecipe({ ...initialRecipe, [ev.target.name]: ev.target.value })
     }
 
     const handleSubmit = e => {
-        console.log('Put recipe in handle submit', recipe)
+        console.log('Put recipe in handle submit', initialRecipe)
         e.preventDefault()
         axiosWithAuth()
-            .put(`/recipes/${id}`, recipe)
+            .put(`/recipes/${id}`, initialRecipe)
             .then(res => {
                 console.log('Recipe was updated', res.data)
-                setRecipe(res.data)
+                setInitialRecipe(res.data)
                 history.push(`/recipe/${id}`)
             })
             .catch(err => {
@@ -54,7 +45,7 @@ const EditPage = () => {
 
     return (
         <div>
-            <Form onSubmit={handleSubmit} style={{margin: 'auto', maxWidth:'900px'}}>
+            <Form onSubmit={handleSubmit} style={{ margin: 'auto', maxWidth: '900px' }}>
                 <h2>Edit Recipe</h2>
                 <Row>
                     <Col>Title
@@ -63,7 +54,7 @@ const EditPage = () => {
                             name='title'
                             id='title'
                             onChange={handleChange}
-                            value={recipe.title} />
+                            value={initialRecipe.title} />
                     </Col>
                     <Col>Category
                         <Form.Control
@@ -72,7 +63,7 @@ const EditPage = () => {
                             name='category'
                             id='category'
                             onChange={handleChange}
-                            value={recipe.category}>
+                            value={initialRecipe.category}>
                             <option>Appetizer</option>
                             <option>Dessert</option>
                             <option>Sandwich</option>
@@ -88,7 +79,7 @@ const EditPage = () => {
                             name='source'
                             id='source'
                             onChange={handleChange}
-                            value={recipe.source} />
+                            value={initialRecipe.source} />
                     </Col>
                     <Col>Img Link
                     <Form.Control
@@ -96,11 +87,11 @@ const EditPage = () => {
                             name='recipe_img'
                             id='recipe_img'
                             onChange={handleChange}
-                            value={recipe.recipe_img} />
+                            value={initialRecipe.recipe_img} />
                     </Col>
                 </Row>
 
-                <Form.Group controlId="exampleForm.ControlTextarea1">
+                <Form.Group >
                     <Form.Label>Ingredients</Form.Label>
                     <Form.Control
                         as="textarea"
@@ -108,10 +99,10 @@ const EditPage = () => {
                         name='ingredients'
                         id='ingredients'
                         onChange={handleChange}
-                        value={recipe.ingredients} />
+                        value={initialRecipe.ingredients} />
                 </Form.Group>
 
-                <Form.Group controlId="exampleForm.ControlTextarea1">
+                <Form.Group >
                     <Form.Label>Instructions</Form.Label>
                     <Form.Control
                         as="textarea"
@@ -119,7 +110,7 @@ const EditPage = () => {
                         name='instructions'
                         id='instructions'
                         onChange={handleChange}
-                        value={recipe.instructions} />
+                        value={initialRecipe.instructions} />
                 </Form.Group>
 
                 <Button variant="primary" type="submit">

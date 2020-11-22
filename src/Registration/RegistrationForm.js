@@ -80,12 +80,12 @@ function RegistrationForm(props) {
 
   return (
     <div>
-      <head>
+      <div>
         <link
           href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300&display=swap"
           rel="stylesheet"
         />
-      </head>
+      </div>
       <form className="form" onSubmit={submitForm}>
         <h1 className="head1">Register</h1>
         <div className='input-wrapper'>
@@ -94,7 +94,7 @@ function RegistrationForm(props) {
           <input
                 type="text"
                 name="first_name"
-                id="name"
+                id="first_name"
                 value={formValues.first_name}
                 placeholder="John"
                 onChange={inputChange}
@@ -105,7 +105,7 @@ function RegistrationForm(props) {
           <input
                 type="text"
                 name="last_name"
-                id="name"
+                id="last_name"
                 value={formValues.last_name}
                 placeholder="Doe"
                 onChange={inputChange}

@@ -43,7 +43,7 @@
   }
 }
 
-.recipe-image-wrapper {
+.recipe-img {
   width: 100%;
-  display: absolute;
+  display: flex;
 }

@@ -11,14 +11,16 @@ const initialFormValues = {
   source: '',
   ingredients: '',
   instructions: '',
-  category: ''
+  category: '',
+  recipe_img: ''
 }
 const initialFormErrors = {
   title: '',
   source: '',
   ingredients: '',
   instructions: '',
-  category: ''
+  category: '',
+  recipe_img: ''
 }
 const initialRecipes = []
 const initialDisabled = true
@@ -90,7 +92,8 @@ const AddRecipe = () => {
       source: formValues.source.trim(),
       ingredients: formValues.ingredients.trim(),
       instructions: formValues.instructions.trim(),
-      category: formValues.category
+      category: formValues.category,
+      recipe_img: formValues.recipe_img
     }
     postNewRecipe(newRecipe)
   }
@@ -224,7 +227,12 @@ const AddRecipe = () => {
           
           <Label htmlFor="">Recipe img</Label>
           <Col sm={10}>
-            <Input type="text"/>
+            <Input 
+              value={formValues.recipe_img}
+              onChange={onChange}
+              name='recipe_img'
+              type="text"
+            />
           </Col>
           </FormGroup>
           
