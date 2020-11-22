@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import * as yup from "yup";
 import formSchema from "./registrationSchema";
-import { Route, Switch } from "react-router-dom";
-import axiosWithAuth from '../utils/axiosWithAuth';
 import "./RegistrationForm.css";
 import axios from 'axios'
 import { useHistory } from 'react-router-dom';
@@ -34,7 +32,7 @@ function RegistrationForm(props) {
       .then(res => {
         console.log(res)
         // props.postLogin(formValues)
-        history.push('/signin')
+        history.push('/login')
       })
       .catch(err => {
         console.log(err)
@@ -61,17 +59,17 @@ function RegistrationForm(props) {
     //     [name]: event.target.checked,
     //   });
     // } else {
-      yup
-        .reach(formSchema, name)
-        .validate(value)
-        .then(() => { })
-        .catch((error) => { });
+    yup
+      .reach(formSchema, name)
+      .validate(value)
+      .then(() => { })
+      .catch((error) => { });
 
-      setFormValues({
-        ...formValues,
-        [name]: value,
-      });
-    }
+    setFormValues({
+      ...formValues,
+      [name]: value,
+    });
+  }
   // }
 
   useEffect(() => {
@@ -90,56 +88,69 @@ function RegistrationForm(props) {
       </head>
       <form className="form" onSubmit={submitForm}>
         <h1 className="head1">Register</h1>
-        <div className="name">
-          <label>F Name:</label>
+        <div className='input-wrapper'>
+          <div className="name">
+            <label>First Name:
           <input
-            type="text"
-            name="first_name"
-            id="name"
-            value={formValues.first_name}
-            placeholder="John"
-            onChange={inputChange}
-          />
-          <label>L Name:</label>
+                type="text"
+                name="first_name"
+                id="name"
+                value={formValues.first_name}
+                placeholder="John"
+                onChange={inputChange}
+              />
+            </label>
+
+            <label>Last Name:
           <input
-            type="text"
-            name="last_name"
-            id="name"
-            value={formValues.last_name}
-            placeholder="Doe"
-            onChange={inputChange}
-          /><label>Username:</label>
+                type="text"
+                name="last_name"
+                id="name"
+                value={formValues.last_name}
+                placeholder="Doe"
+                onChange={inputChange}
+              />
+            </label>
+
+            <label>Username:
           <input
-            type="text"
-            name="username"
-            id="username"
-            value={formValues.username}
-            placeholder="bigjoe"
-            onChange={inputChange}
-          />
+                type="text"
+                name="username"
+                id="username"
+                value={formValues.username}
+                placeholder="bigjoe"
+                onChange={inputChange}
+              />
+            </label>
+          </div>
+
+          <div className="email">
+            <label>Email:
+          <input
+                type="email"
+                name="email"
+                id="email"
+                value={formValues.email}
+                placeholder="johndoe@email.com"
+                onChange={inputChange}
+              />
+            </label>
+          </div>
+
+          <div className="password">
+            <label>Password:
+          <input
+                type="password"
+                name="password"
+                id="password"
+                value={formValues.password}
+                placeholder="Runner124##"
+                onChange={inputChange}
+              />
+            </label>
+          </div>
         </div>
-        <div className="email">
-          <label>Email:</label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            value={formValues.email}
-            placeholder="johndoe@email.com"
-            onChange={inputChange}
-          />
-        </div>
-        <div className="password">
-          <label>Password:</label>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            value={formValues.password}
-            placeholder="Runner124##"
-            onChange={inputChange}
-          />
-        </div>
+
         {/* <div className="terms">
           <a href="#">Terms of Service</a>
           <input

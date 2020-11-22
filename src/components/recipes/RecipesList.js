@@ -1,8 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
-// import { Spinner } from 'react-bootstrap'
 import axiosWithAuth from '../../utils/axiosWithAuth'
 import RecipeCard from './RecipeCard'
-import './card.css'
+import './RecipeCard.css'
 
 // Context
 import { RecipeContext } from '../../context/RecipeContext'
@@ -30,7 +29,7 @@ const RecipesList = ({ recipe }) => {
 
     return (
         <div >
-            {/* <Spinner animation="border" variant="warning" /> */}
+            
             <div className="user-banner">
             </div>
             <div className="recipe-list">
@@ -42,6 +41,7 @@ const RecipesList = ({ recipe }) => {
                             ingredients={recipe.ingredients}
                             id={recipe.id}
                             pic={recipe.recipe_img}
+                            category={recipe.category}
                         />
                     </div>
                 ))}

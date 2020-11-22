@@ -27,14 +27,14 @@ const AddRecipe = () => {
   const [formErrors, setFormErrors] = useState(initialFormErrors)
   const [disabled, setDisabled] = useState(initialDisabled)
   const [category, setCategory] = useState('')
-  const { push } = useHistory()
+  let history = useHistory()
 
   const postNewRecipe = newRecipe => {
     axiosWithAuth().post('/recipes', newRecipe)
       .then(response => {
         console.log(response)
         setRecipes([response.data, ...recipes])
-        window.location.assign('/recipes');
+        history.push('/recipes');
       })
       .catch(error => {
         console.log(error)

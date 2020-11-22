@@ -1,7 +1,8 @@
 import React, { useEffect, useContext } from 'react';
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import axiosWithAuth from '../../utils/axiosWithAuth'
 import { RecipeContext } from '../../context/RecipeContext';
+import { Spinner } from 'react-bootstrap'
 
 import './RecipePage.css'
 import { Button } from 'react-bootstrap'
@@ -9,6 +10,7 @@ import { Button } from 'react-bootstrap'
 const RecipePage = () => {
     const [recipes, setRecipes] = useContext(RecipeContext);
     const { id } = useParams()
+    let history = useHistory()
 
     useEffect(() => {
         const getRecipes = () => {
@@ -30,7 +32,7 @@ const RecipePage = () => {
         axiosWithAuth()
             .delete(`/recipes/${id}`)
             .then((res) => {
-                window.location.assign('/recipes');
+                history.push('/recipes');
             })
             .catch((err) => {
                 console.log(err);
@@ -38,13 +40,13 @@ const RecipePage = () => {
     };
 
     if (!recipes) {
-        return <div>Loading Recipe...</div>;
+        return <div><Spinner animation="border" variant="secondary" /></div>;
     }
     return (
         <div className='page-container'>
             <h2 className='title'>{recipes.title}</h2>
             <div className='button-container'>
-                <Button variant='primary'>Edit Recipe</Button>
+                <Button variant='primary' onClick={() => history.push(`/edit/${id}`)}>Edit Recipe</Button>
             </div>
             {/* <div className='recipe-image-wrapper'>
                 <img src={recipes.recipe_img} alt="recipe_image"/>

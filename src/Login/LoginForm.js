@@ -23,6 +23,7 @@ const LoginForm = () => {
   const [formValues, setFormValues] = useState(initialFormValues)
   const [formErrors, setFormErrors] = useState(initialFormErrors)
   const [disabled, setDisabled] = useState(initialDisabled)
+  let history = useHistory()
 
   const postNewUsers = newUser => {
     axios.post('https://secret-family-recipes-6.herokuapp.com/auth/login', newUser)
@@ -30,7 +31,7 @@ const LoginForm = () => {
         setUsers([...users, response.data])
         localStorage.setItem("token", response.data.token);
         console.log(response.data)
-        window.location.assign('/recipes');
+        history.push('/recipes');
       })
       .catch((error) => {
         // debugger
