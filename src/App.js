@@ -17,15 +17,14 @@ function App() {
   return (
     <RecipeProvider>
 
-
       <div className='App'>
         <Navigation />
         <Switch>
           <PrivateRoute exact path='/recipes' component={RecipesList} />
-
-          <Route path='/register' component={RegistrationForm} />
-          <Route path='/login' component={LoginForm} />
-          <Route path='/addrecipe' component={AddRecipe} />
+          <Route exact path='/' component={LoginForm} />
+          <Route exact path='/login' component={LoginForm} />
+          <Route exact path='/register' component={RegistrationForm} />
+          <Route exact path='/addrecipe' component={AddRecipe} />
 
           <PrivateRoute path="/recipe/:id" component={RecipePage} >
             <RecipePage />

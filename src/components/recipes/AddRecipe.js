@@ -118,7 +118,7 @@ const AddRecipe = () => {
   return (
     <div className='addRecipeForm'>
       <form onSubmit={onSubmit} className='addRecipe'>
-        <h1>Add Recipe</h1>
+        <h2>Add Recipe</h2>
 
 
         <div className='addRecipeItems'>

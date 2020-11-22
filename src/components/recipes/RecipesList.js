@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import axiosWithAuth from '../../utils/axiosWithAuth'
 import RecipeCard from './RecipeCard'
 import './RecipeCard.css'
@@ -8,33 +8,33 @@ import { RecipeContext } from '../../context/RecipeContext'
 
 
 
-const RecipesList = ({ recipe }) => {
+const RecipesList = () => {
     const [recipes, setRecipes] = useContext(RecipeContext);
-    // const { user } = AuthContext;
+
     useEffect(() => {
         const getRecipes = () => {
             axiosWithAuth()
-            .get(`/recipes`)
-            .then(res => {
-                setRecipes(res.data);
-                console.log('recipes: ', res);
-            })
-            .catch(error => {
-                console.error('Server Error', error);
-            });
+                .get(`/recipes`)
+                .then(res => {
+                    setRecipes(res.data);
+                    console.log('recipes: ', res);
+                })
+                .catch(error => {
+                    console.error('Server Error', error);
+                });
         }
         getRecipes();
     }, []);
-    
+
 
     return (
-        <div >
-            
+        <div style={{ margin: 'auto', maxWidth: '1000px' }}>
+
             <div className="user-banner">
             </div>
             <div className="recipe-list">
                 {recipes.map(recipe => (
-                    <div key={recipe.id}>
+                    <div key={recipe.id} style={{ margin: 'auto', maxWidth: '900px' }}>
                         <RecipeCard
                             title={recipe.title}
                             source={recipe.source}

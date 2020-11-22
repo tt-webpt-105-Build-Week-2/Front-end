@@ -6,15 +6,16 @@
 .card-container {
   width: 18rem;
   overflow: hidden;
-  margin: 1rem;
+  margin: 2%
 }
 
 .card-img {
   transition: transform 300ms;
+  object-fit: cover;
 }
 
 .card-img:hover {
   max-width: 100%;
   max-height: 100%;
-  transform: scale(1.09);
+  transform: scale(1.05);
 }

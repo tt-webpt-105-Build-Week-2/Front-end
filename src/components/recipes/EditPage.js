@@ -54,7 +54,7 @@ const EditPage = () => {
 
     return (
         <div>
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit} style={{margin: 'auto', maxWidth:'900px'}}>
                 <h2>Edit Recipe</h2>
                 <Row>
                     <Col>Title
@@ -123,7 +123,7 @@ const EditPage = () => {
                 </Form.Group>
 
                 <Button variant="primary" type="submit">
-                    Save
+                    Save Changes
                 </Button>
             </Form>
         </div>
