@@ -1,0 +1,13 @@
+.list-container {
+  display: flex;
+  max-width: 1000px;
+  justify-content: space-evenly;
+  margin: auto;
+  padding-top: 1%;
+  padding-bottom: 2%;
+}
+
+.recipe-list {
+  justify-content: center;
+  margin: auto;
+}

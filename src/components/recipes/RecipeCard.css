@@ -5,12 +5,17 @@
 
 .card-container {
   width: 18rem;
-  overflow: hidden;
-  margin: 2%
+  margin: 1rem;
 }
 
 .card-container {
   transition: transform 300ms;
+  object-fit: cover;
+}
+
+.card-img{
+  height: 250px;
+  width: 100%;
   object-fit: cover;
 }
 

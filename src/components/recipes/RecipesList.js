@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import RecipeCard from './RecipeCard'
-import './RecipeCard.css'
+import './RecipesList.css'
 
 // Context
 import { RecipeContext } from '../../context/RecipeContext'
@@ -13,13 +13,13 @@ const RecipesList = () => {
     }, []);
 
     return (
-        <div style={{ margin: 'auto', maxWidth: '1000px' }}>
+        <div className='list-container'>
 
             <div className="user-banner">
             </div>
             <div className="recipe-list">
                 {recipes.map(recipe => (
-                    <div key={recipe.id} style={{ margin: 'auto', maxWidth: '900px' }}>
+                    <div key={recipe.id}>
                         <RecipeCard
                             title={recipe.title}
                             source={recipe.source}
