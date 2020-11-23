@@ -3,7 +3,6 @@ import { Card, Button } from 'react-bootstrap';
 import { useHistory } from "react-router-dom";
 import './RecipeCard.css'
 
-
 const RecipeCard = ({ title, source, pic, id }) => {
     const history = useHistory();
 
@@ -21,7 +20,7 @@ const RecipeCard = ({ title, source, pic, id }) => {
                     <Card.Text>
                         <em>By: {source}</em>
                     </Card.Text>
-                    <Button href={`/recipe/${id}`} variant="danger">View Recipe</Button>
+                    <Button className='recipe-button' href={`/recipe/${id}`} variant="danger">View Recipe</Button>
                 </Card.Body>
             </Card>
         </div>

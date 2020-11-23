@@ -8,8 +8,8 @@ import './RecipePage.css'
 import { Button } from 'react-bootstrap'
 
 const RecipePage = () => {
-    const [recipe, setRecipe] = useContext(RecipeContext);
-    let history = useHistory()
+    const [recipe, setRecipe, getRecipes] = useContext(RecipeContext);
+    const history = useHistory()
     const { id } = useParams()
 
 
@@ -24,12 +24,13 @@ const RecipePage = () => {
             })
     }, [id])
 
-    const deleteRecipe = () => {
+    const deleteRecipe = (id) => {
         axiosWithAuth()
             .delete(`/recipes/${id}`)
             .then((res) => {
                 console.log('recipe deleted', res)
-                history.push('/recipes');
+                window.location.assign('/recipes');
+                getRecipes();
             })
             .catch((err) => {
                 console.log('delete error', err);
@@ -43,7 +44,7 @@ const RecipePage = () => {
         <div className='page-container'>
             <div>
                 <div className='button-container'>
-                    <Button variant='primary' onClick={() => history.push(`/edit/${id}`)}>Edit Recipe</Button>
+                    <Button className='recipe-page-btn' variant='primary' onClick={() => history.push(`/edit/${id}`)}>Edit Recipe</Button>
                 </div>
                 <h2 className='title'>{recipe.title}</h2>
             </div>
@@ -64,7 +65,7 @@ const RecipePage = () => {
 
             </div>
             <div className='button-container'>
-                <Button variant='danger' onClick={() => deleteRecipe()}> Delete Recipe</Button>
+                <Button className='recipe-page-btn' variant='danger' onClick={() => deleteRecipe(id)}> Delete Recipe</Button>
             </div>
         </div>
     )
