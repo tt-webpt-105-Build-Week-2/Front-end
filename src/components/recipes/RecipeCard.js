@@ -3,7 +3,6 @@ import { Card, Button } from 'react-bootstrap';
 import { useHistory } from "react-router-dom";
 import './RecipeCard.css'
 
-
 const RecipeCard = ({ title, source, pic, id }) => {
     const history = useHistory();
 

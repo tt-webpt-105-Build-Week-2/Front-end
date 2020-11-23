@@ -10,14 +10,10 @@ import RecipePage from './components/recipes/RecipePage'
 // Context
 import RecipeProvider from './context/RecipeContext'
 import EditPage from './components/recipes/EditPage';
-// import AuthState from './context/AuthState';
-// import RecipeState from './context/AuthState';
 
 function App() {
   return (
-    <RecipeProvider
-    
-    >
+    <RecipeProvider>
 
       <div className='App'>
         <Navigation />
@@ -27,7 +23,7 @@ function App() {
           <Route exact path='/login' component={LoginForm} />
           <Route exact path='/register' component={RegistrationForm} />
           <Route exact path='/addrecipe' component={AddRecipe} />
-        {/* conditional routing? */}
+          {/* conditional routing? */}
           <PrivateRoute path="/recipe/:id" component={RecipePage} >
             <RecipePage />
 
@@ -38,8 +34,6 @@ function App() {
 
         </Switch>
       </div>
-
-
 
     </RecipeProvider>
   );
